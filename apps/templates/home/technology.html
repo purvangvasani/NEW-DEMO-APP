@@ -1,0 +1,104 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Technology {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="page-header-title" style="padding-bottom: 1rem;">
+                                            <h3 class="m-b-10"><img src="{{ ASSETS_ROOT }}/images/{{params.techSubname}}.png"
+                                                    alt="{{params.techName}}" class="rounded-circle"
+                                                    style="width:40px;"> {{ params.techName }}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul class="breadcrumb" style="float: right; text-decoration: none;">
+                                            <li class="breadcrumb-item"><a href="/"><i
+                                                        class="feather icon-home"></i></a></li>
+                                            <li class="breadcrumb-item">{{ params.techSubname }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    {{ params.description | safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        {% if data_length == 0 %}
+                        <div class="col-md-12 col-xl-4 m-0 p-0">
+                            <div>No questions Found..</div>
+                        </div>
+                        {%else %}
+                        {% for queArray in questionData %}
+                        <div class="container mt-sm-5 my-1">
+                            <div class="question ml-sm-5 pl-sm-5 pt-2">
+                                <div class="py-2 h5"><b>Q. {{ queArray.question | safe }}</b></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>
+                                    <label class="custom-control-label" for="{{queArray.id}}" style="color: white; text-align: justify;">{{ queArray.answer | safe }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <!-- <div class="container mt-sm-5 my-1">
+                            <div class="question ml-sm-5 pl-sm-5 pt-2">
+                                <div class="py-2 h5"><b>Q. which option best describes your job role?</b></div>
+                                <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                    <label class="options">Small Business Owner or Employee
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="options">Nonprofit Owner or Employee
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="options">Journalist or Activist
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="options">Other
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-3">
+                                <div id="prev">
+                                    <button class="btn btn-primary">Previous</button>
+                                </div>
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary">Next</button>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- [ Main Content ] end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
